@@ -159,7 +159,7 @@ public class QueryResponse extends SolrResponseBase {
         _jsonFacetingInfo = (NamedList<Object>) res.getVal(i);
         // Don't call extractJsonFacetingInfo(_jsonFacetingInfo) here in an effort to do it lazily
       } else if ("suggest".equals(n)) {
-        _suggestInfo = (NamedList<NamedList<Object>>) res.getVal(i);
+        _suggestInfo = new NamedList<>((Map<String, NamedList<Object>>) res.getVal(i));
         extractSuggesterInfo(_suggestInfo);
       } else if ("stats".equals(n)) {
         _statsInfo = (NamedList<Object>) res.getVal(i);
